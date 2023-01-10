@@ -1,0 +1,32 @@
+{% include 'base.html' %}
+
+{% block content %}
+
+<h1>상세내용은 아래를 참고하세요</h1>
+<h1>{{article.subject}}</h1>
+
+<p>
+
+    <strong>
+        {{article.description}}
+    </strong>
+
+<div>
+
+    <a href="{% url 'mtv:edit' article.pk %}">
+        <button>
+            수정
+        </button>
+        
+    </a>
+
+
+    <form action="{% url 'mtv:delete' article.pk %}" method="POST">
+        {% csrf_token %}
+        <button>
+            삭제
+        </button>
+
+    </form>
+</div>
+{% endblock content %}

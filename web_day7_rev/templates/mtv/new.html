@@ -1,0 +1,28 @@
+{% include 'base.html' %}
+
+{% block content %}
+
+<h1>New Article</h1>
+
+<form action="{% url 'mtv:create' %}" method="POST">
+{% csrf_token %}
+<div>
+    <label for="subject">제목:</label>
+    <input type="title" name='subject' type='text'>
+
+</div>
+
+<div>
+    <label for="description">내용:</label>
+    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+</div>
+
+<div>
+    <input type="submit" value="제출">
+</div>
+
+</form>
+{% endblock content %}
+
+
+
