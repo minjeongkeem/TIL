@@ -1,0 +1,29 @@
+<!-- board/detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ article.title }} ({{ article.comment_set.count }})</h1>
+<p>{{ article.content }}</p>
+<p>by - {{ article.user.username }}</p>
+
+{% if  request.user == article.user %}
+<div>
+    <form action="{% url 'board:update_article' article.pk  %}">
+        <button>수정</button>
+    </form>
+
+    <form action="{% url 'board:delete_article' article.pk  %}" method="POST" style="display: inline-block;">
+    {% csrf_token %}
+    <button>삭제</button>
+    </form>
+</div>
+{% endif %}
+
+<hr>
+<!-- component(부품) -->
+{% if request.user.is_authenticated %}
+{% include 'board/_comment_form.html' %}
+{% endif %}
+
+{% include 'board/_comment_list.html' %}
+{% endblock content %}
